@@ -14,8 +14,7 @@ Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkow
 - Stabilna praca bez błędów krytycznych
 ---
 ### Diagram Use-Case
-![[img_UseCaseDiagram.png]]
-
+![use-case](images/img_UseCaseDiagram.png)
 ---
 ### Analiza MoSCow
 #### Must have (Muszą być):
