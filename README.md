@@ -14,8 +14,26 @@ Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkow
 - Stabilna praca bez błędów krytycznych
 ---
 ### Diagram Use-Case
-![[img_UseCaseDiagram.png]]
 
+```mermaid
+flowchart LR
+    subgraph 'System'
+    uc1((Szyfruj Plik))
+    uc2((Odszyfruj Plik))
+    uc3((Wybierz plik z dysku))
+    uc4((Wybierz metodę szyfrowania))
+	uc5((Wybierz metodę deszyfrowania))
+
+    end
+    customer[Użytkownik👤]
+
+    customer----->uc1
+    customer-->uc2
+    uc1 -. include .-> uc3
+    uc3 -. include .-> uc4
+    uc2 -. include .-> uc3
+    uc3 -. include .-> uc5
+```
 ---
 ### Analiza MoSCow
 #### Must have (Muszą być):
