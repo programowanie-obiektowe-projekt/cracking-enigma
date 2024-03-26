@@ -1,5 +1,10 @@
 # cracking-enigma
 
+#### Zespół
+- Maciej Pliszek
+- Grzegorz Pańczuk
+- Mikołaj Żurek
+
 ### Opis aplikacji
 Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkownik ma do wyboru zarówno trzy metody szyfrowania jak i deszyfrowania, weryfikujące możliwości łamania użytych szyfrów.
 
