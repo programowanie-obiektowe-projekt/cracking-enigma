@@ -15,7 +15,6 @@ Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkow
 1. Możliwość wyboru pliku tekstowego do szyfrowania.
 2. Interfejs użytkownika umożliwiający podanie klucza szyfrowania.
 3. Implementacja algorytmu szyfrowania i deszyfrowania.
-4. Implementacja algorytmu łamania szyfru (np. brute force).
 
 #### Should have (Powinno być):
 
