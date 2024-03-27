@@ -6,7 +6,7 @@
 - Mikołaj Żurek
 
 ### Opis aplikacji
-Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkownik ma do wyboru zarówno trzy metody szyfrowania jak i deszyfrowania, weryfikujące możliwości łamania użytych szyfrów.
+Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkownik ma do wyboru zarówno trzy metody szyfrowania jak i deszyfrowania. Udostępnione również są metody do łamania szyfrów.
 
 ---
 ### Analiza MoSCow
@@ -49,7 +49,8 @@ flowchart LR
     uc6((Złam Szyfr))
     uc3((Wybierz plik z dysku))
     uc4((Wybierz metodę szyfrowania))
-	uc5((Wybierz metodę deszyfrowania))
+    uc5((Wybierz metodę deszyfrowania))
+    uc7((Wybierz metodę łamania szyfrów))
 
     end
     customer[Użytkownik👤]
@@ -61,6 +62,8 @@ flowchart LR
     uc3 -. include .-> uc4
     uc2 -. include .-> uc3
     uc3 -. include .-> uc5
+    uc6 -. include .-> uc3
+    uc3 -. include .-> uc7
     
 ```
 ---
