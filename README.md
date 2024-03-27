@@ -15,6 +15,7 @@ Aplikacja służy do szyfrowania oraz deszyfrowania plików tekstowych. Użytkow
 1. Możliwość wyboru pliku tekstowego do szyfrowania.
 2. Interfejs użytkownika umożliwiający podanie klucza szyfrowania.
 3. Implementacja algorytmu szyfrowania i deszyfrowania.
+4. Implementacja algorytmu łamania szyfru (np. brute force).
 
 #### Should have (Powinno być):
 
@@ -45,6 +46,7 @@ flowchart LR
     subgraph 'System'
     uc1((Szyfruj Plik))
     uc2((Odszyfruj Plik))
+    uc6((Złam Szyfr))
     uc3((Wybierz plik z dysku))
     uc4((Wybierz metodę szyfrowania))
 	uc5((Wybierz metodę deszyfrowania))
@@ -54,10 +56,12 @@ flowchart LR
 
     customer----->uc1
     customer-->uc2
+    customer -. include .-> uc6
     uc1 -. include .-> uc3
     uc3 -. include .-> uc4
     uc2 -. include .-> uc3
     uc3 -. include .-> uc5
+    
 ```
 ---
 
@@ -65,6 +69,7 @@ flowchart LR
 ###### Funkcjonalne:
 - Szyfrowanie tekstów podanych przez użytkownika przy pomocy kilku zaimplementowanych algorytmów szyfrujących
 - Deszyfracja zaszyfrowanych tekstów przy pomocy kilku zaimplementowanych metod deszyfracji
+- Łamanie zaszyfrowanych plików
 
 ###### Niefunkcjonalne:
 - Prosty i czytelny interfejs
