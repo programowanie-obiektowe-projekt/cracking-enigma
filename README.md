@@ -56,7 +56,7 @@ flowchart LR
 
     customer----->uc1
     customer-->uc2
-    customer -. include .-> uc6
+    customer --> uc6
     uc1 -. include .-> uc3
     uc3 -. include .-> uc4
     uc2 -. include .-> uc3
