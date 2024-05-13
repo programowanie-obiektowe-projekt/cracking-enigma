@@ -1,7 +1,26 @@
-p {
-    color: red;
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1 {
-    color: blue;
+    margin: 0;
+    padding:  2rem 0;
+    font-family: "Ingrid Darling", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 64px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+}
+
+.header {
+    background-color: lightgreen;
+
 }
