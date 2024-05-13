@@ -1,0 +1,15 @@
+# PyCharm files
+.idea/
+
+# Python virtual environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Other files
+*.log
+*.bak
+
+.obsidian

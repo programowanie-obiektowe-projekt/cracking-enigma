@@ -22,11 +22,18 @@
                     <p class="optionName">Wybierz plik</p> <input type="file" id="file" name="file" class="esz">
                  </div>
 
-                <button id="submit" class="btn">Zaszyfruj</button>
+                <div class="row">
+                    <p class="optionName">Podaj klucz szyfrujący</p> <input type="text" id="key" name="key" class="esz">
+                 </div>
+
+                <div class="row">
+                    <button id="decrypt" class="btn">Odrszyfruj</button>
+                    <button id="bruteforce" class="btn">Użyj brutalnej siły</button>
+                 </div>
             </div>
         </div>
-        <p>A moze chcesz odszyfrowac?</p>
-        <a href="/decrypt">odszyfruj</a>
+        <p>A moze chcesz zaszyfrować?</p>
+        <a href="/">zaszyfruj</a>
     </div>
 
     {% endblock %}

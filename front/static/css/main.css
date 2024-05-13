@@ -21,6 +21,62 @@ h1 {
 }
 
 .header {
-    background-color: lightgreen;
+    background-color: #43AA6C;
+    margin-bottom: 50px;
+}
 
+.card {
+    background-color: lightgray;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.optionName {
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: 100%*/
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+
+}
+
+.btn, ::file-selector-button {
+    background-color: transparent;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.btn:hover {
+    background-color: gray;
+    color: white;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
 }
