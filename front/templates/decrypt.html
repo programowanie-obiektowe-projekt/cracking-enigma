@@ -1,39 +1,44 @@
 {% extends 'base.html' %}
 
-    {% block head %}
-    <title>Cracking Enigma</title>
-    {% endblock %}
+{% block head %}
+<title>Cracking Enigma</title>
+{% endblock %}
 
-
-    {% block main %}
-    <div class="container">
-        <div class="card">
-            <h2>Bezpieczne i Prywatne Przechowywanie Twoich Danych</h2>
+{% block main %}
+<div class="container">
+    <div class="card">
+        <h2>Bezpieczne i Prywatne Przechowywanie Twoich Danych</h2>
+        <form action="/submit" method="POST" enctype="multipart/form-data">
             <div class="col">
                 <div class="row">
-                <p class="optionName">Wybierz alogorytm szyfrujący</p> <select id="select" name="select" class="btn">
-                    <option value="1">Szyfr cezara</option>
-                    <option value="2">Szyfr cezara2</option>
-                    <option value="2">Szyfr cezara3</option>
-                </select>
+                    <p class="optionName">Wybierz alogorytm szyfrujący</p>
+                    <select id="select" name="select" class="btn">
+                        <option value="Szyfr cezara">Szyfr cezara</option>
+                        <option value="DES3">DES3</option>
+                        <option value="AES">AES</option>
+                    </select>
                 </div>
 
                 <div class="row">
-                    <p class="optionName">Wybierz plik</p> <input type="file" id="file" name="file" class="esz">
-                 </div>
+                    <p class="optionName">Wybierz plik</p>
+                    <input type="file" id="text" name="file" class="">
+                </div>
 
                 <div class="row">
-                    <p class="optionName">Podaj klucz szyfrujący</p> <input type="text" id="key" name="key" class="esz">
-                 </div>
+                    <p class="optionName">Podaj klucz szyfrujący</p>
+                    <input type="file" id="key" name="key" class="">
+                </div>
 
                 <div class="row">
-                    <button id="decrypt" class="btn">Odrszyfruj</button>
-                    <button id="bruteforce" class="btn">Użyj brutalnej siły</button>
-                 </div>
+                    <input type="submit" id="decrypt" name="action" class="btn" value="Odszyfruj">
+<input type="submit" id="brute_force" name="action" class="btn" value="użyj brutalnej siły">
+<input type="submit" id="frequency_attack" name="action" class="btn" value="użyj ataku statystycznego">
+
+                </div>
             </div>
-        </div>
+        </form>
         <p>A moze chcesz zaszyfrować?</p>
         <a href="/">zaszyfruj</a>
     </div>
-
-    {% endblock %}
+</div>
+{% endblock %}

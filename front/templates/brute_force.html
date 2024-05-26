@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cracking Enigma</title>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Brute Force Results</h2>
+    {% if result %}
+    <p>Number of Iterations: {{ num_of_iterations }}</p>
+    <p>Result: {{ result }}</p>
+    <p>Message: {{ msg }}</p>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+    <button onclick="location.href='/'" type="button">Go to Homepage</button>
+</div>
+{% endblock %}

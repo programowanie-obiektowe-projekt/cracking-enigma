@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cracking Enigma</title>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="card">
+        <h2>Udało się poprawnie zaszyfrować plik  🎉</h2>
+
+            <div class="col">
+                <div class="row">
+                    <a href="/download-encrypted_text" class="btn">Pobierz zaszyfrowany plik</a>
+                    <a href="/download-key" class="btn">Pobierz klucz</a>
+                </div>
+
+            </div>
+                <a href="/" >
+                    <button id="back" class="btn">Wróć do strony głownej</button>
+                </a>
+
+    </div>
+</div>
+{% endblock %}
