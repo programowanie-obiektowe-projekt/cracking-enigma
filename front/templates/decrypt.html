@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Cracking Enigma</title>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Bezpieczne i Prywatne Przechowywanie Twoich Danych</h5>
+
+                <div class="row g-3">
+                    <form action="/submit" method="POST" enctype="multipart/form-data">
+                        <div class="col-auto mb-3">
+                            <label class="optionName">Wybierz alogorytm szyfrujący</label>
+                            <select id="select" name="select" class="form-select">
+                                <option value="Szyfr cezara">Szyfr cezara</option>
+                                <option value="DES3">DES3</option>
+                                <option value="AES">AES</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Wybierz plik</label>
+                            <input type="file" id="text" name="file" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="key" class="form-label">Podaj klucz szyfrujący</label>
+                            <input type="file" id="key" name="key" class="form-control">
+                        </div>
+
+                        <div class="">
+                            <button type="submit" id="decrypt" name="action" value="Odszyfruj" class="btn"
+                                    style="background: #69277C; color: white" >Odszyfruj
+                            </button>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

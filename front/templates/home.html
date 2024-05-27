@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Cracking Enigma</title>
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="../static/assets/favicon.png" alt="" width="240" height="240">
+            <h1 class="display-5 fw-bold text-body-emphasis">Bezpieczne i Prywatne Przechowywanie Twoich Danych</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mt-3 mb-4">Witamy w <b>Cracking Enigma</b>, zaawansowanym narzędziu do zabezpieczania i
+                    odszyfrowywania Twoich tekstów. Niezależnie od tego, czy chcesz zaszyfrować ważne dokumenty,
+                    odszyfrować otrzymane wiadomości, czy złamać kod, nasze intuicyjne rozwiązanie pomoże Ci w szybki i
+                    bezpieczny sposób. Przejdź dalej i odkryj, jak łatwe może być zarządzanie bezpieczeństwem
+                    informacji.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/" type="button" class="btn btn-primary btn-lg px-4 gap-3"
+                            style="background: #69277C; color: white; border-color:#602272;">Przejdź do szyfrowania
+                    </a>
+                    <a type="button" href="#desc" class="btn btn-outline-secondary btn-lg px-4">Przejdź do opisu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-4 py-5" id="featured-3">
+
+        <h2 class="pb-2 border-bottom" id="desc">Funkcjonalności aplikacji</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    {#          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>#}
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Szyfrowanie plików tekstowych</h3>
+                <p>Nasza aplikacja oferuje zaawansowane opcje szyfrowania plików tekstowych za pomocą algorytmów takich
+                    jak Cezar, DES3 oraz AES. Wybierz odpowiednią metodę, aby skutecznie zabezpieczyć swoje dane.</p>
+                <a href="/encrypt" class="icon-link">
+                    Dowiedz się więcej
+                    {#          <svg class="bi"><use xlink:href="#chevron-right"/></svg>#}
+                </a>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    {#          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>#}
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Deszyfrowanie plików tekstowych</h3>
+                <p>Łatwo odszyfruj swoje pliki tekstowe, korzystając z algorytmów Cezara, DES3 i AES. Nasze narzędzie
+                    zapewnia szybki i bezpieczny dostęp do chronionych danych.</p>
+                <a href="/decrypt" class="icon-link">
+                    Dowiedz się więcej
+                    {#          <svg class="bi"><use xlink:href="#chevron-right"/></svg>#}
+                </a>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    {#          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>#}
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Łamanie zaszyfrowanych plików</h3>
+                <p>Specjalizujemy się w łamaniu zaszyfrowanych plików za pomocą metody Brute Force oraz ataków
+                    częstotliwościowych. Odzyskaj dostęp do swoich danych szybko i skutecznie.</p>
+                <a href="/crack" class="icon-link">
+                    Dowiedz się więcej
+                    {#          <svg class="bi"><use xlink:href="#chevron-right"/></svg>#}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark text-secondary px-4 py-5 text-center">
+        <div class="py-5">
+            <h1 class="display-5 fw-bold text-white">Sprawdź nasze repozytorium Github</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="fs-5 mb-4">Poznaj nasz projekt od środka! W naszym repozytorium GitHub znajdziesz pełny kod
+                    źródłowy, szczegółową dokumentację, oraz przykłady użycia. Dołącz do naszej społeczności i
+                    współtwórz z nami rozwiązania do szyfrowania i deszyfrowania danych. Czekamy na Twoje uwagi i
+                    sugestie, aby uczynić naszą aplikację jeszcze lepszą.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="https://github.com/programowanie-obiektowe-projekt/cracking-enigma/tree/main" type="button"
+                       class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
+                       style="--bs-btn-color: #8a57ea; --bs-btn-border-color: #8a57ea; --bs-btn-hover-bg: #8a57ea; --bs-btn-hover-border-color: #8a57ea;">
+                        Sprawdź
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+```
