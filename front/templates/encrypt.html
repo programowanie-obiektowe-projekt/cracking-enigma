@@ -24,15 +24,27 @@
 
                             <div class="mb-3">
                                 <label for="file" class="form-label">Wybierz plik</label>
-                                <input class="form-control" type="file" id="file" name="file">
+                                <input class="form-control" type="file" id="file" name="file" onchange="checkFile()" >
                             </div>
 
                             <button type="submit" id="submit" value="Zaszyfruj" class="btn"
-                                    style="background: #69277C; color: white">Zaszyfruj
+                                    style="background: #69277C; color: white" disabled>Zaszyfruj
                             </button>
 
                         </div>
                     </form>
+
+                    <script>
+                        function checkFile() {
+                            var submitButton = document.getElementById('submit');
+                            var fileInput = document.getElementById('file');
+                            if (fileInput.value != '') {
+                                submitButton.disabled = false;
+                            } else {
+                                submitButton.disabled = true;
+                            }
+                        }
+                    </script>
 
                 </div>
             </div>
