@@ -4,6 +4,7 @@ from Crypto.Random import get_random_bytes
 import itertools
 import time
 
+
 from algorithms.algorithm_interface import AlgorithmInterface
 
 

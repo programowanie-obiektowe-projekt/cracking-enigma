@@ -1,36 +1,44 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Cracking Enigma</title>
+    <title>Cracking Enigma</title>
 {% endblock %}
 
 {% block main %}
-<div class="container">
-    <div class="card">
-        <h2>Bezpieczne i Prywatne Przechowywanie Twoich Danych</h2>
-        <form action="/encrypt" method="POST" enctype="multipart/form-data">
-            <div class="col">
-                <div class="row">
-                    <p class="optionName">Wybierz alogorytm szyfrujący</p>
-                    <select id="select" name="select" class="btn">
-                         <option value="Szyfr cezara">Szyfr cezara</option>
-                        <option value="DES3">DES3</option>
-                        <option value="AES">AES</option>
-                    </select>
-                </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Bezpieczne i Prywatne Przechowywanie Twoich Danych</h5>
 
-                <div class="row">
-                    <p class="optionName">Wybierz plik</p>
-                    <input type="file" id="file" name="file" class="esz">
-                </div>
+                <div class="row g-3">
+                    <form action="/encrypt" method="POST" enctype="multipart/form-data">
+                        <div class="col-auto mb-3">
+                            <div class="mb-3">
+                                <label class="optionName">Wybierz alogorytm szyfrujący</label>
+                                <select id="select" name="select" class="form-select">
+                                    <option value="Szyfr cezara">Szyfr cezara</option>
+                                    <option value="DES3">DES3</option>
+                                    <option value="AES">AES</option>
+                                </select>
+                            </div>
 
-                <input type="submit" id="submit" class="btn" value="Zaszyfruj">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Wybierz plik</label>
+                                <input class="form-control" type="file" id="file" name="file">
+                            </div>
+
+                            <button type="submit" id="submit" value="Zaszyfruj" class="btn"
+                                    style="background: #69277C; color: white">Zaszyfruj
+                            </button>
+
+                        </div>
+                    </form>
+
+                </div>
             </div>
-        </form>
-        <p>A moze chcesz odszyfrowac?</p>
-    <a href="/decrypt">odszyfruj</a>
-    </div>
 
-</div>
+        </div>
+
+    </div>
 
 {% endblock %}

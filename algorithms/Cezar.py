@@ -4,6 +4,11 @@ from Crypto.Random import random
 
 from algorithms.algorithm_interface import AlgorithmInterface
 
+class result:
+    def __init__(self):
+        iterations = 0
+        decrypted_text = ''
+        msg = ''
 
 class CezarAdapter(AlgorithmInterface):
     def __init__(self):
@@ -47,6 +52,7 @@ class CezarClass:
         return szyfrogram, klucz
 
     def bruteForce(self, napis, original):
+
         start_time = time.time()
         for i in range(1, 26):
             decrypted_text = self.szyfruj(napis, -i)
@@ -55,7 +61,12 @@ class CezarClass:
                 key = i
                 msg = "Znaleziono klucz: " + str(key) + " Oryginalny tekst: " + decrypted_text[0] + " Złamano w " + str(
                     end_time - start_time) + " sekund"
-                return i, decrypted_text, msg
+                result = {
+                    'iterations': i,
+                    'decrypted_text': decrypted_text[0],
+                    'msg': msg
+                }
+                return result
 
     def frequency_analysis_cezar(self, cipher_text):
         start_time = time.time()

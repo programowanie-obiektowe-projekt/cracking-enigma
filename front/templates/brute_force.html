@@ -8,9 +8,7 @@
 <div class="container">
     <h2>Brute Force Results</h2>
     {% if result %}
-    <p>Number of Iterations: {{ num_of_iterations }}</p>
-    <p>Result: {{ result }}</p>
-    <p>Message: {{ msg }}</p>
+    <p>Result: {{ result.msg }}</p>
     {% else %}
     <p>No results found.</p>
     {% endif %}
