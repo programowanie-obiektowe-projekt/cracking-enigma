@@ -17,7 +17,13 @@ class AESAdapter(AlgorithmInterface):
     def decrypt(self, encrypted_text, key):
         return self.algorithm.odszyfruj_aes(encrypted_text, key)
 
-    ## brute_force and frequency_analysis_aes
+    def brute_force(self, encrypted_text, original):
+        return self.algorithm.bruteForce_aes(encrypted_text)
+
+    def frequency_analysis(self, encrypted_text):
+        return self.algorithm.frequency_analysis_aes(encrypted_text)
+
+
 
 class AESClass:
     def szyfruj_aes(self, napis):
@@ -30,16 +36,14 @@ class AESClass:
         return encrypted_data, klucz
 
     def odszyfruj_aes(self, encrypted_data, klucz):
-        print("encrypted_data", encrypted_data)
         cipher = AES.new(klucz, AES.MODE_ECB)
         padded_data = cipher.decrypt(encrypted_data)
         decrypted_data = unpad(padded_data, AES.block_size).decode()
-        print("decrypted_data", decrypted_data)
         return decrypted_data
 
     def bruteForce_aes(self, encrypted_data):
         start_time = time.time()
-        max_time = 300
+        max_time = 5
         attempts = 0
 
         for i in itertools.product(range(ord('a'), ord('z') + 1), repeat=16):
@@ -56,8 +60,15 @@ class AESClass:
                 pass
 
             msg = f"Nie udało się złamać po: {attempts} prób"
+            print(time.time() - start_time, max_time)
             if time.time() - start_time > max_time:
-                return msg
+                return {
+                    "msg": msg,
+                    "iterations": attempts,
+                    'decrypted_data': ''
+                }
+
+
 
     def frequency_analysis_aes(self, encrypted_data):
         freq_polish = {'a': 8.91, 'b': 1.47, 'c': 3.96, 'd': 3.25, 'e': 7.66, 'f': 0.3, 'g': 1.42, 'h': 1.08, 'i': 8.21,
@@ -65,15 +76,24 @@ class AESClass:
                        's': 4.32, 't': 3.98, 'u': 2.5, 'v': 0.04, 'w': 4.65, 'x': 0.02, 'y': 3.76, 'z': 5.64}
 
         start_time = time.time()
-        max_time = 300
+        max_time = 5
         attempts = 0
 
         for i in itertools.product(range(ord('a'), ord('z') + 1), repeat=16):
+            if time.time() - start_time > max_time:
+                msg = f"Nie udało się złamać po: {attempts} prób"
+                return {
+                    "msg": msg,
+                    "iterations": attempts,
+                    'decrypted_data': ''
+                }
+
             attempts += 1
             klucz = bytes(i)
             cipher = AES.new(klucz, AES.MODE_ECB)
             try:
-                decrypted_data = unpad(cipher.decrypt(encrypted_data), AES.block_size).decode()
+
+                decrypted_data = cipher.decrypt(encrypted_data)
 
                 freq_decrypted = {}
                 for letter in decrypted_data:
@@ -97,6 +117,3 @@ class AESClass:
             except ValueError:
                 pass
 
-        if time.time() - start_time > max_time:
-            msg = f"Nie udało się złamać po: {attempts} prób"
-            return msg
