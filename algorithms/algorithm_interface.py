@@ -9,3 +9,11 @@ class AlgorithmInterface(ABC):
     @abstractmethod
     def decrypt(self, encrypted_data, key):
         pass
+
+    @abstractmethod
+    def brute_force(self, encrypted_data, original):
+        pass
+
+    @abstractmethod
+    def frequency_analysis(self, encrypted_data):
+        pass

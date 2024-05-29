@@ -16,28 +16,24 @@ class CezarAdapter(AlgorithmInterface):
 
     def encrypt(self, text):
 
-        # key = 3
         key = random.randint(1, 25)
-
         return self.algorithm.szyfruj(text, key)
 
     def decrypt(self, encrypted_text, key):
-        print(encrypted_text)
         encrypted_text = encrypted_text.decode('utf-8')
         key = int.from_bytes(key, 'big')
-        print('tu', key)
         return self.algorithm.szyfruj(encrypted_text, -key)
 
     def brute_force(self, encrypted_text, original):
         return self.algorithm.bruteForce(encrypted_text, original)
 
     def frequency_analysis(self, encrypted_text):
+
         return self.algorithm.frequency_analysis_cezar(encrypted_text)
 
 
 class CezarClass:
     def szyfruj(self, napis, klucz):
-        print('szyfruj', napis, klucz)
         szyfrogram = ""
         for i in napis:
             if i == ' ':
@@ -99,7 +95,7 @@ class CezarClass:
 
             shift = ord(min_diff_letter) - ord('e')
 
-            decrypted_text = self.szyfruj(cipher_text, -shift)
+            decrypted_text, _ = self.szyfruj(cipher_text, -shift)
 
             end_time = time.time()
             time_elapsed = end_time - start_time

@@ -12,9 +12,8 @@ def home():
     return render_template('home.html')
 
 @app.route('/encrypt')
-def index():  # put application's code here
+def index():  
     return render_template('encrypt.html')
-
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -28,18 +27,21 @@ def submit():
     key = key.read() if key else None
 
     action = request.form.get('action')
-    print(action)
     if action == 'Odszyfruj':
         decrypt_file(selected_algorithm, file_content, key)
         return render_template('decryption_success.html')
 
+    elif action == "użyj ataku statystycznego":
+        if selected_algorithm == 'Szyfr cezara':
+            file_content = file_content.decode('utf-8')
+        return render_template('brute_force.html', result=frequency_attack(selected_algorithm, file_content))
+
     elif action == 'użyj brutalnej siły':
+        if selected_algorithm == 'Szyfr cezara':
+            file_content = file_content.decode('utf-8')
         return render_template('brute_force.html', result=brute_force(selected_algorithm, file_content))
 
-    elif action == 'użyj ataku statystycznego':
-        return "Frequency attack not implemented yet"
-
-    return "invalid action"
+    return "invalid action!!!"
 
 
 @app.route('/decrypt')
@@ -108,14 +110,24 @@ def decrypt_file(selected_algorithm, file_content, key):
     return render_template('decryption_success.html')
 
 
-@app.route('/bruteForce')
+@app.route('/brute_force')
 def brute_force(selected_algorithm, file_content):
 
     # Factory pattern
     algorithm = AlgorithmFactory.create_algorithm(selected_algorithm)
-    result = algorithm.brute_force(file_content.decode('utf-8'), original=session.get('file_content'))
+    result = algorithm.brute_force(file_content, original=session.get('file_content'))
 
     return result
+
+@app.route('/frequency_attack')
+def frequency_attack(selected_algorithm, file_content):
+
+        # Factory pattern
+        algorithm = AlgorithmFactory.create_algorithm(selected_algorithm)
+        result = algorithm.frequency_analysis(file_content)
+
+        return result
+
 
 @app.route('/download-<file_type>')
 def download(file_type):

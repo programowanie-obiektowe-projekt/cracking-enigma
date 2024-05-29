@@ -10,7 +10,7 @@ __pycache__/
 *.py[cod]
 
 # Other files
-*.log
+*.log[]
 *.bak
 
 .obsidian
