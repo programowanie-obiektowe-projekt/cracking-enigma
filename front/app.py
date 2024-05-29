@@ -7,11 +7,13 @@ from file_reading_strategy import FileHandler, ReadAsBytesStrategy, ReadAsString
 app = Flask(__name__)
 app.secret_key = 'very_secret_key_tajne_haslo'
 
-
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    return render_template('home.html')
 
+@app.route('/encrypt')
+def index():  
+    return render_template('encrypt.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -47,7 +49,7 @@ def decrypt():
     return render_template('decrypt.html')
 
 
-@app.route('/encrypt', methods=['POST'])
+@app.route('/encrypt_succesfull', methods=['POST'])
 def encrypt():
     selected_algorithm = request.form.get('select')
     file = request.files.get('file')
@@ -137,6 +139,10 @@ def download(file_type):
 
     return send_file(filename, as_attachment=True)
 
+@app.route('/crack')
+def crack():
+    return render_template('crack.html')
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=6900)
