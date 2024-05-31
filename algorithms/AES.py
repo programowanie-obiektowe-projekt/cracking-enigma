@@ -24,6 +24,8 @@ class AESAdapter(AlgorithmInterface):
     def frequency_analysis(self, encrypted_text):
         return self.algorithm.frequency_analysis_aes(encrypted_text)
 
+
+
 class AESClass:
     def szyfruj_aes(self, napis):
         klucz = get_random_bytes(16)

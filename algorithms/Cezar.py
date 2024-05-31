@@ -9,7 +9,6 @@ class CezarAdapter(AlgorithmInterface):
         self.algorithm = CezarClass()
 
     def encrypt(self, text):
-
         key = random.randint(1, 25)
         return self.algorithm.szyfruj(text, key)
 
@@ -19,11 +18,9 @@ class CezarAdapter(AlgorithmInterface):
         return self.algorithm.szyfruj(encrypted_text, -key)
 
     def brute_force(self, encrypted_text, original):
-
         return self.algorithm.bruteForce(encrypted_text, original)
 
     def frequency_analysis(self, encrypted_text, original):
-
         return self.algorithm.frequency_analysis_cezar(encrypted_text, original)
 
 
@@ -43,9 +40,11 @@ class CezarClass:
         return szyfrogram, klucz
 
     def bruteForce(self, napis, original):
+        status=''
+        msg=''
 
         start_time = time.time()
-        for i in range(1, 26):
+        for i in range(1, 100):
             decrypted_text = self.szyfruj(napis, -i)
             if decrypted_text[0].replace(' ', '').lower() == original.replace(' ', '').lower():
                 end_time = time.time()
@@ -53,15 +52,15 @@ class CezarClass:
                 msg = "Znaleziono klucz: " + str(key) + " Oryginalny tekst: " + decrypted_text[0] + " Złamano w " + str(
                     end_time - start_time) + " sekund"
                 status = "Udało się złamać szyfr"
+                break
             else:
                 end_time = time.time()
                 msg = "Nie udało się złamać szyfru po " + str(i) + " próbach i " + str(end_time - start_time) + " ms"
                 status = "Nie udało się złamać szyfru"
-
-            return {
-                    'status': status,
-                    'msg': msg
-                }
+        return {
+            'status': status,
+            'msg': msg
+        }
 
 
     def frequency_analysis_cezar(self, cipher_text, original):
