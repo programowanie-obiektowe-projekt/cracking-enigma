@@ -19,7 +19,10 @@ def index():
 def submit():
     selected_algorithm = request.form.get('select')
     file = request.files.get('file')
+
     file_content = file.read()
+
+
     if selected_algorithm != 'Szyfr cezara':
         file_content = ast.literal_eval(file_content.decode('utf-8'))
 
@@ -29,17 +32,25 @@ def submit():
     action = request.form.get('action')
     if action == 'Odszyfruj':
         decrypt_file(selected_algorithm, file_content, key)
-        return render_template('decryption_success.html')
+        return render_template('decryption_result.html')
 
     elif action == "użyj ataku statystycznego":
         if selected_algorithm == 'Szyfr cezara':
             file_content = file_content.decode('utf-8')
-        return render_template('brute_force.html', result=frequency_attack(selected_algorithm, file_content))
+            original_file = request.files.get('original_file')
+            original_file_content = original_file.read()
+            original_file_content = original_file_content.decode('utf-8')
+
+        return render_template('brute_force.html', result=frequency_attack(selected_algorithm, file_content, original_file_content))
 
     elif action == 'użyj brutalnej siły':
         if selected_algorithm == 'Szyfr cezara':
             file_content = file_content.decode('utf-8')
-        return render_template('brute_force.html', result=brute_force(selected_algorithm, file_content))
+            original_file = request.files.get('original_file')
+            original_file_content = original_file.read()
+            original_file_content = original_file_content.decode('utf-8')
+
+        return render_template('brute_force.html', result=brute_force(selected_algorithm, file_content, original_file_content))
 
     return "invalid action!!!"
 
@@ -49,7 +60,7 @@ def decrypt():
     return render_template('decrypt.html')
 
 
-@app.route('/encrypt_succesfull', methods=['POST'])
+@app.route('/encrypt_result', methods=['POST'])
 def encrypt():
     selected_algorithm = request.form.get('select')
     file = request.files.get('file')
@@ -88,7 +99,7 @@ def encrypt():
     session['encrypted_text'] = 'encrypted_text.txt'
     session['key'] = 'key.txt'
 
-    return render_template('encrption_success.html')
+    return render_template('encryption_result.html')
 
 
 @app.route('/decrypt', methods=['POST'])
@@ -107,26 +118,23 @@ def decrypt_file(selected_algorithm, file_content, key):
 
     session['decrypted_text'] = filename
 
-    return render_template('decryption_success.html')
+    return render_template('decryption_result.html')
 
 
 @app.route('/brute_force')
-def brute_force(selected_algorithm, file_content):
-
+def brute_force(selected_algorithm, file_content, original_file):
     # Factory pattern
     algorithm = AlgorithmFactory.create_algorithm(selected_algorithm)
-    result = algorithm.brute_force(file_content, original=session.get('file_content'))
+    result = algorithm.brute_force(file_content, original=original_file)
 
     return result
 
 @app.route('/frequency_attack')
-def frequency_attack(selected_algorithm, file_content):
-
-        # Factory pattern
-        algorithm = AlgorithmFactory.create_algorithm(selected_algorithm)
-        result = algorithm.frequency_analysis(file_content)
-
-        return result
+def frequency_attack(selected_algorithm, file_content, original_file):
+    # Factory pattern
+    algorithm = AlgorithmFactory.create_algorithm(selected_algorithm)
+    result = algorithm.frequency_analysis(file_content, original=original_file)
+    return result
 
 
 @app.route('/download-<file_type>')

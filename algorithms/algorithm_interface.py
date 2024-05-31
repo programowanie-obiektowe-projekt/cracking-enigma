@@ -15,5 +15,5 @@ class AlgorithmInterface(ABC):
         pass
 
     @abstractmethod
-    def frequency_analysis(self, encrypted_data):
+    def frequency_analysis(self, encrypted_data, original):
         pass

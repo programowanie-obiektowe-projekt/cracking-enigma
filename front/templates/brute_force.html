@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Cracking Enigma</title>
+    <title>Cracking Enigma</title>
 {% endblock %}
 
 {% block main %}
-<div class="container">
-    <h2>Brute Force Results</h2>
-    {% if result %}
-    <p>Result: {{ result.msg }}</p>
-    {% else %}
-    <p>No results found.</p>
-    {% endif %}
-    <button onclick="location.href='/'" type="button">Go to Homepage</button>
-</div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ result.status }}</h5>
+
+                <div class="col">
+                    {% if result %}
+                        <p>{{ result.msg }}</p>
+                    {% else %}
+                        <p>No results found.</p>
+                    {% endif %}
+                </div>
+                <a href="/">
+                    <button id="back" class="btn btn-secondary" >Wróć do strony głownej</button>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
 {% endblock %}

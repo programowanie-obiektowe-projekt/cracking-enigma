@@ -4,12 +4,6 @@ from Crypto.Random import random
 
 from algorithms.algorithm_interface import AlgorithmInterface
 
-class result:
-    def __init__(self):
-        iterations = 0
-        decrypted_text = ''
-        msg = ''
-
 class CezarAdapter(AlgorithmInterface):
     def __init__(self):
         self.algorithm = CezarClass()
@@ -25,11 +19,12 @@ class CezarAdapter(AlgorithmInterface):
         return self.algorithm.szyfruj(encrypted_text, -key)
 
     def brute_force(self, encrypted_text, original):
+
         return self.algorithm.bruteForce(encrypted_text, original)
 
-    def frequency_analysis(self, encrypted_text):
+    def frequency_analysis(self, encrypted_text, original):
 
-        return self.algorithm.frequency_analysis_cezar(encrypted_text)
+        return self.algorithm.frequency_analysis_cezar(encrypted_text, original)
 
 
 class CezarClass:
@@ -57,17 +52,23 @@ class CezarClass:
                 key = i
                 msg = "Znaleziono klucz: " + str(key) + " Oryginalny tekst: " + decrypted_text[0] + " Złamano w " + str(
                     end_time - start_time) + " sekund"
-                result = {
-                    'iterations': i,
-                    'decrypted_text': decrypted_text[0],
+                status = "Udało się złamać szyfr"
+            else:
+                end_time = time.time()
+                msg = "Nie udało się złamać szyfru po " + str(i) + " próbach i " + str(end_time - start_time) + " ms"
+                status = "Nie udało się złamać szyfru"
+
+            return {
+                    'status': status,
                     'msg': msg
                 }
-                return result
 
-    def frequency_analysis_cezar(self, cipher_text):
+
+    def frequency_analysis_cezar(self, cipher_text, original):
         start_time = time.time()
         max_time = 300
         attempts = 0
+
 
         freq_polish = {'a': 8.91, 'b': 1.47, 'c': 3.96, 'd': 3.25, 'e': 7.66, 'f': 0.3, 'g': 1.42, 'h': 1.08, 'i': 8.21,
                        'j': 2.28, 'k': 3.51, 'l': 2.1, 'm': 2.8, 'n': 5.52, 'o': 7.75, 'p': 3.13, 'q': 0.14, 'r': 4.69,
@@ -100,9 +101,18 @@ class CezarClass:
             end_time = time.time()
             time_elapsed = end_time - start_time
 
-            msg = "Znaleziono przesunięcie: " + str(
-                shift) + " Oryginalny tekst: " + decrypted_text + " Złamano w " + str(time_elapsed) + " sekund"
+            if decrypted_text == original:
+                status = "Udało się złamać szyfr"
+                msg = (f"Znaleziono przesunięcie: {shift} Oryginalny tekst:"
+                       f" {decrypted_text} Złamano w {time_elapsed} sekund")
+            else:
+                msg = f"Nie udało się złamać szyfru po upłynięciu czasu: " + str(max_time) + "  ms oraz " + str(attempts) + " próbach"
+                status = "Nie udało się złamać szyfru"
 
-            return msg, decrypted_text, shift
+            return {
+                "msg": msg,
+                "status": status
+                }
+
         except Exception as e:
             raise e

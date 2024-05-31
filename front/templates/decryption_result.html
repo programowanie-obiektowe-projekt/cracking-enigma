@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Cracking Enigma</title>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Udało się poprawnie zaszyfrować plik</h5>
+
+                <div class="col">
+                    <div class="row">
+                        <a href="/download-decrypted_text" class="btn">
+                            <button id="back" class="btn btn-primary"
+                                    style="background: #69277C; color: white; border-color:#602272;">
+                                Pobierz odzyfrowany plik
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+                <a href="/">
+                    <button id="back" class="btn btn-secondary"
+                            >Wróć do strony głownej
+                    </button>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

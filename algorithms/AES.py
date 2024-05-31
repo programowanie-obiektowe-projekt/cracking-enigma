@@ -24,8 +24,6 @@ class AESAdapter(AlgorithmInterface):
     def frequency_analysis(self, encrypted_text):
         return self.algorithm.frequency_analysis_aes(encrypted_text)
 
-
-
 class AESClass:
     def szyfruj_aes(self, napis):
         klucz = get_random_bytes(16)
@@ -56,7 +54,12 @@ class AESClass:
                 end_time = time.time()
                 msg = "Klucz: " + str(klucz) + " Tekst: " + decrypted_data + " Złamano w " + str(
                     end_time - start_time) + " sekund"
-                return msg, klucz, decrypted_data
+                return {
+                    "msg": msg,
+                    "iterations": attempts,
+                    'decrypted_data': decrypted_data
+                }
+
             except ValueError:
                 pass
 
