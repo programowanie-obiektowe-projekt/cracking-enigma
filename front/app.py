@@ -35,20 +35,21 @@ def submit():
         return render_template('decryption_result.html')
 
     elif action == "użyj ataku statystycznego":
+        original_file = request.files.get('original_file')
+        original_file_content = original_file.read()
+        original_file_content = original_file_content.decode('utf-8')
         if selected_algorithm == 'Szyfr cezara':
             file_content = file_content.decode('utf-8')
-            original_file = request.files.get('original_file')
-            original_file_content = original_file.read()
-            original_file_content = original_file_content.decode('utf-8')
 
         return render_template('brute_force.html', result=frequency_attack(selected_algorithm, file_content, original_file_content))
 
     elif action == 'użyj brutalnej siły':
+        original_file = request.files.get('original_file')
+        original_file_content = original_file.read()
+        original_file_content = original_file_content.decode('utf-8')
         if selected_algorithm == 'Szyfr cezara':
             file_content = file_content.decode('utf-8')
-            original_file = request.files.get('original_file')
-            original_file_content = original_file.read()
-            original_file_content = original_file_content.decode('utf-8')
+
 
         return render_template('brute_force.html', result=brute_force(selected_algorithm, file_content, original_file_content))
 
