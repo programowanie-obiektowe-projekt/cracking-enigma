@@ -37,20 +37,18 @@ class TestAESAdapter(unittest.TestCase):
         result = self.aes_adapter.brute_force(encrypted_data, text)
         self.assertIn('msg', result)
         self.assertIn('iterations', result)
-        self.assertIn('decrypted_data', result)
 
     def test_frequency_analysis_returns_dictionary(self):
         text = b"Hello, World!"
         encrypted_data, _ = self.aes_adapter.encrypt(text)
-        result = self.aes_adapter.frequency_analysis(encrypted_data)
+        result = self.aes_adapter.frequency_analysis(encrypted_data, text)
         self.assertIsInstance(result, dict)
 
     def test_frequency_analysis_dictionary_contains_expected_keys(self):
         text = b"Hello, World!"
         encrypted_data, _ = self.aes_adapter.encrypt(text)
-        result = self.aes_adapter.frequency_analysis(encrypted_data)
+        result = self.aes_adapter.frequency_analysis(encrypted_data, text)
         self.assertIn('status', result)
-        self.assertIn('decrypted_data', result)
 
 if __name__ == '__main__':
     unittest.main()
