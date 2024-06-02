@@ -61,6 +61,7 @@ class DES3Class:
                 decrypted_data = unpad(cipher.decrypt(encrypted_data), DES.block_size)
                 if original == decrypted_data:
                     return {
+                        "status": "Udało się złamać szyfr",
                         "msg": f"udało się złamać po: {attempts} prób",
                         "iterations": attempts,
                         'decrypted_data': decrypted_data
@@ -71,6 +72,7 @@ class DES3Class:
 
             if time.time() - start_time > max_time:
                 return {
+                    "status": "Nie udało się złamać szyfru",
                     "msg": f"Nie udało się złamać po: {attempts} prób",
                     "iterations": attempts,
                     'decrypted_data': ''
@@ -78,13 +80,21 @@ class DES3Class:
 
     def frequency_analysis_des(self, encrypted_data, iv):
         start_time = time.time()
-        max_time = 300
+        max_time = 10
         attempts = 0
         freq_polish = {'a': 8.91, 'b': 1.47, 'c': 3.96, 'd': 3.25, 'e': 7.66, 'f': 0.3, 'g': 1.42, 'h': 1.08, 'i': 8.21,
                        'j': 2.28, 'k': 3.51, 'l': 2.1, 'm': 2.8, 'n': 5.52, 'o': 7.75, 'p': 3.13, 'q': 0.14, 'r': 4.69,
                        's': 4.32, 't': 3.98, 'u': 2.5, 'v': 0.04, 'w': 4.65, 'x': 0.02, 'y': 3.76, 'z': 5.64}
 
         for i in itertools.product(range(256), repeat=8):
+            if time.time() - start_time > max_time:
+                msg = f"Nie udało się złamać po: {attempts} prób"
+                return {
+                    "status": "Nie udało się złamać szyfru",
+                    "msg": msg,
+                    "iterations": attempts,
+                    'decrypted_data': ''
+                }
             klucz = bytes(i)
             cipher = DES.new(klucz, DES.MODE_CFB, iv=iv)
             try:
@@ -109,17 +119,12 @@ class DES3Class:
                         klucz) + " Oryginalny tekst: " + decrypted_data + " Złamano w " + str(
                         time.time() - start_time) + " sekund"
                     return {
+                        "status": "Udało się złamać szyfr",
                         "msg": msg,
                         "iterations": attempts,
                         'decrypted_data': decrypted_data
                     }
             except ValueError:
                 pass
-            if time.time() - start_time > max_time:
-                msg = f"Nie udało się złamać po: {attempts} prób"
-                return {
-                    "msg": msg,
-                    "iterations": attempts,
-                    'decrypted_data': ''
-                }
+
 

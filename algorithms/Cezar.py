@@ -40,8 +40,6 @@ class CezarClass:
         return szyfrogram, klucz
 
     def bruteForce(self, napis, original):
-        status=''
-        msg=''
 
         start_time = time.time()
         for i in range(1, 100):
@@ -110,7 +108,8 @@ class CezarClass:
 
             return {
                 "msg": msg,
-                "status": status
+                "status": status,
+                "decrypted_text": decrypted_text,
                 }
 
         except Exception as e:
