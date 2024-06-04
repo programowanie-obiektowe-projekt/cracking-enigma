@@ -77,19 +77,24 @@ flowchart LR
 ###### Niefunkcjonalne:
 - Prosty i czytelny interfejs
 - Stabilna praca bez błędów krytycznych
----
 
+---
+### Technologie
+
+Aplikacja powstała przy użyciu frameworka Flask, w któym zainstalowano bibliotekę klas stylów Bootstrap wykorzystaną do interfejsu użytkownika. Za algorytmy kryptograficzne odpowiada biblioteka Crypto.
+
+### Wzorce projektowe
+
+Zastosowane wzorce projektowe to:
+- Factory Pattern
+- Adapter
+- Strategy Pattern
+- Decorator
+
+### Testy
+
+Do testów wykorzystano unittest. Przetestowana została warstwa logiczna aplikacji, natomiast nie testowano interfejsu użytkownika. Całkowite pokrycie kodu testami wynosi 54%.
+
+---
 ### Repozytorium
 github: https://github.com/programowanie-obiektowe-projekt/cracking-enigma
-
-### Raport zadań przypisywanych na tablicy Kanban
-Maciej Pliszek:
-- Wybranie systemu kontroli wersji i utworzenie repozytorium, wybranie metody programowania zwinnego
-- Diagram przypadków użycia
-
-Grzegorz Pańczuk:
-- Wymagania funkcjonalne i niefunkcjonalne
-
-Mikołaj Żurek:
-- Opis działania aplikacji
-- Analiza MoSCoW
