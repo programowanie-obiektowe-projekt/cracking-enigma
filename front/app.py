@@ -97,6 +97,9 @@ def encrypt():
             f.write(encrypted_text[1])
         pass
 
+    session['encrypted_text'] = 'encrypted_text.txt'
+    session['key'] = 'key.txt'
+
     return render_template('encryption_result.html')
 
 

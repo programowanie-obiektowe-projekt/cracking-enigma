@@ -30,9 +30,9 @@ class DES3Adapter(AlgorithmInterface):
         iv = encrypted_text[:DES.block_size]
         return self.algorithm.bruteForce_des(encrypted_text, iv, original)
 
-    def frequency_analysis(self, encrypted_text):
+    def frequency_analysis(self, encrypted_text, original):
         iv = encrypted_text[:DES.block_size]
-        return self.algorithm.frequency_analysis_des(encrypted_text, iv)
+        return self.algorithm.frequency_analysis_des(encrypted_text, iv, original)
 
 
 
@@ -54,22 +54,6 @@ class DES3Class:
         attempts = 0
 
         for i in itertools.product(range(256), repeat=8):
-            klucz = bytes(i)
-            attempts += 1
-            cipher = DES.new(klucz, DES.MODE_CFB, iv=iv)
-            try:
-                decrypted_data = unpad(cipher.decrypt(encrypted_data), DES.block_size)
-                if original == decrypted_data:
-                    return {
-                        "status": "Udało się złamać szyfr",
-                        "msg": f"udało się złamać po: {attempts} prób",
-                        "iterations": attempts,
-                        'decrypted_data': decrypted_data
-                    }
-                return
-            except ValueError:
-                pass
-
             if time.time() - start_time > max_time:
                 return {
                     "status": "Nie udało się złamać szyfru",
@@ -77,8 +61,24 @@ class DES3Class:
                     "iterations": attempts,
                     'decrypted_data': ''
                 }
+            else:
 
-    def frequency_analysis_des(self, encrypted_data, iv):
+                klucz = bytes(i)
+                attempts += 1
+                cipher = DES.new(klucz, DES.MODE_CFB, iv=iv)
+                try:
+                    decrypted_data = unpad(cipher.decrypt(encrypted_data), DES.block_size)
+                    if original == decrypted_data:
+                        return {
+                            "status": "Udało się złamać szyfr",
+                            "msg": f"udało się złamać po: {attempts} prób",
+                            "iterations": attempts,
+                            'decrypted_data': decrypted_data
+                        }
+                except ValueError:
+                    pass
+
+    def frequency_analysis_des(self, encrypted_data, iv, original):
         start_time = time.time()
         max_time = 10
         attempts = 0
@@ -88,7 +88,7 @@ class DES3Class:
 
         for i in itertools.product(range(256), repeat=8):
             if time.time() - start_time > max_time:
-                msg = f"Nie udało się złamać po: {attempts} prób"
+                msg = f"Nie udało się złamać po: {max_time} sekundach"
                 return {
                     "status": "Nie udało się złamać szyfru",
                     "msg": msg,
