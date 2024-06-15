@@ -1,3 +1,6 @@
+[![en](https://img.shields.io/badge/lang-eng-blue.svg)](https://github.com/programowanie-obiektowe-projekt/cracking-enigma/blob/main/README.md)
+[![pl](https://img.shields.io/badge/lang-pl-red.svg)](https://github.com/programowanie-obiektowe-projekt/cracking-enigma/blob/main/README.pl.md)
+
 # cracking-enigma
 
 #### Team
